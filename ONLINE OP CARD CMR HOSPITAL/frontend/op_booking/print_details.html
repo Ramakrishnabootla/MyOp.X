@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Print Appointment Details - CMR Hospital</title>
+<link rel="stylesheet" href="op_style.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+    }
+    .details-container {
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        position: relative;
+        max-width: 800px;
+        margin: 20px auto;
+    }
+    .patient-image {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        border-radius: 10%;
+        border: 2px solid #007bff;
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+    }
+    .details-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .details-header h2 {
+        margin-bottom: 5px;
+        color: #333;
+    }
+    .details-header p {
+        margin: 0;
+        color: #666;
+    }
+    .details-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .details-table th, .details-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+    .details-table th {
+        background-color: #f0f4f8;
+    }
+    .note-section {
+        margin-top: 30px;
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .signature-section {
+        margin-top: 40px;
+        text-align: right;
+        padding-right: 40px;
+    }
+    .signature-line {
+        margin-top: 20px;
+        width: 200px;
+        border-top: 1px solid #333;
+        text-align: center;
+        margin-left: auto;
+    }
+    .btn-container {
+        margin-top: 20px;
+        text-align: center;
+    }
+    .btn-container button {
+        margin: 0 5px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .btn-container button:hover {
+        background-color: #0056b3;
+    }
+    @media print {
+        body {
+            -webkit-print-color-adjust: exact; /* Ensure colors are printed correctly */
+            print-color-adjust: exact;
+        }
+        .patient-image {
+            display: block !important; /* Ensure patient image is visible */
+        }
+    }
+    
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="details-container">
+        <!-- Patient Image -->
+        <img id="patientImage" class="patient-image" src="" alt="Patient Image">
+        
+        <!-- Header with Name and Unique ID -->
+        <div class="details-header">
+            <h2>Appointment Details - CMR Hospital</h2>
+            <p><strong>Patient Name:</strong> <span id="patientName"></span></p>
+            <p><strong>Unique ID:</strong> <span id="uniqueId"></span></p>
+        </div>
+
+        <!-- Detailed Information Table -->
+        <table class="details-table">
+            <tbody id="detailsContainer"></tbody>
+        </table>
+
+        <!-- Hospital Info Note -->
+        <div class="note-section">
+            <h4>Note:</h4>
+            <p>CMR Hospital offers state-of-the-art medical facilities and a team of experienced doctors across various specialties.  
+               We ensure 24/7 availability of emergency services and personalized care for every patient.</p>
+        </div>
+
+        <!-- Doctor Signature Section -->
+        <div class="signature-section">
+            <p>Doctor's Signature:</p>
+            <div class="signature-line"></div>
+        </div>
+    </div>
+    
+    <!-- Buttons for Print and New Booking -->
+    <div class="btn-container">
+        <button onclick="window.print()">Print</button>
+        <button onclick="window.location.href='op_booking.html'">Book Another Appointment</button>
+    </div>
+</div>
+
+<script>
+    // Get the submitted data from session storage
+    const formData = JSON.parse(sessionStorage.getItem("formData"));
+
+    if (formData) {
+        const detailsContainer = document.getElementById("detailsContainer");
+        const patientImage = document.getElementById("patientImage");
+        const patientNameElement = document.getElementById("patientName");
+        const uniqueIdElement = document.getElementById("uniqueId");
+        let detailsHTML = "";
+
+        // Format and mask Aadhar number
+        const maskAadhar = (aadhar) => aadhar.slice(0, 8).replace(/\d/g, "*") + aadhar.slice(-4);
+
+        // Set Patient Name and Unique ID
+        if (formData.patientName) patientNameElement.textContent = formData.patientName;
+        if (formData.uniqueId) uniqueIdElement.textContent = formData.uniqueId;
+
+        // Generate HTML for details
+        for (const [key, value] of Object.entries(formData)) {
+            if (key === "aadharNumber") {
+                detailsHTML += `<tr><th>Aadhar Number</th><td>${maskAadhar(value)}</td></tr>`;
+            } else if (key === "patientImage") {
+                patientImage.src = value;
+            } else if (key === "phoneNumber") {  // Include phone number
+                detailsHTML += `<tr><th>Phone Number</th><td>${value}</td></tr>`;
+            } else if (key !== "aadharImage" && key !== "uniqueId" && key !== "patientName") {
+                // Exclude Aadhar image, Unique ID, and Patient Name as they are handled separately
+                const formattedKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                detailsHTML += `<tr><th>${formattedKey}</th><td>${value}</td></tr>`;
+            }
+        }
+
+        detailsContainer.innerHTML = detailsHTML;
+    } else {
+        document.querySelector(".container").innerHTML = "<p>No details available. Please fill the form again.</p>";
+    }
+</script>
+
+</body>
+</html>

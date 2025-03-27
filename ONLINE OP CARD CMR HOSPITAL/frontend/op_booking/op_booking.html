@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OP Booking Form - CMR Hospital</title>
+<link rel="stylesheet" href="../op_booking/op_style.css">
+</head>
+<body>
+  <nav class="navbar1">
+    <div class="navbar_logo">
+        <img src="../landing_page/nav_logo.png" alt="CMR Logo" class="logo">
+        <h1 class="navbar_title">CMR HOSPITAL ONLINE APPOINTMENT BOOKING SERVICES</h1>
+    </div>
+    <div class="navbar_buttons">
+        <button class="navbar_op_button" onclick="location.href='../landing_page/index.html'">HOME</button>
+    </div>
+  </nav>
+<div class="container mx-auto p-4">
+<h2 class="text-2xl font-bold mb-4">Online Appointment Booking - CMR Hospital</h2>
+<form id="bookingForm" enctype="multipart/form-data">
+  <!-- Speciality Selection -->
+  <label for="speciality">Select Speciality:</label>
+  <select id="speciality" name="speciality" required>
+    <option value="">--Choose Speciality--</option>
+    <option value="cardiology">Cardiology</option>
+    <option value="neurology">Neurology</option>
+    <option value="orthopedics">Orthopedics</option>
+    <option value="dermatology">Dermatology</option>
+    <option value="pediatrics">Pediatrics</option>
+  </select>
+
+  <!-- Doctor Information -->
+  <div id="doctorInfo" class="my-4"></div>
+
+  <!-- Time Slot Selection -->
+  <label for="appointmentDate">Select Appointment Date:</label>
+  <input type="date" id="appointmentDate" name="appointmentDate" required>
+  <label for="timeSlot">Select Time Slot:</label>
+  <select id="timeSlot" name="timeSlot" required>
+    <option value="">--Choose Time Slot--</option>
+    <option value="9:00-10:00">9:00-10:00</option>
+    <option value="10:00-11:00">10:00-11:00</option>
+    <option value="11:00-12:00">11:00-12:00</option>
+    <option value="12:00-1:00">12:00-1:00</option>
+  </select>
+
+  <!-- Personal Information -->
+  <h3>Personal Information</h3>
+  <label for="text">Patient Details</label>
+  <input type="text" placeholder="Patient Name" name="patientName" required>
+  <input type="tel" placeholder="Phone Number" pattern="[0-9]{10}" required>
+  <label for="date">Date Of Birth</label>
+  <input type="date" placeholder="Date of Birth" required>
+  <input type="number" placeholder="Age" required>
+  <label for="sex">Gender</label>
+  <select id="sex" name="sex" required>
+    <option value="">--Select Sex--</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select>
+  <input type="text" placeholder="Aadhar Number" pattern="[0-9]{12}" required>
+  <label>Upload Patient Image:</label>
+  <input type="file" name="patientImage" accept="image/*" required title="Upload Patient Image">
+  <label>Upload Aadhar Image:</label>
+  <input type="file" name="aadharImage" accept="image/*" required title="Upload Aadhar Image">
+
+  <!-- Submit Button -->
+  <button type="submit">Submit</button>
+  
+</div>
+
+<script src="../op_booking/op_script.js"></script>
+</body>
+</html>

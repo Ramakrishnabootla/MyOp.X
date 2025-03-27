@@ -1,0 +1,181 @@
+.navbar1 {
+    display: flex;
+    justify-content: space-between;        /* Space between logo and buttons */
+    align-items: center;                   /* Align items vertically centered */
+    background-color: #95a497;             /* Dark background for navbar */
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 0px;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;  /* Smooth transition */
+}
+
+.navbar1:hover {
+    box-shadow: 0 0 15px 5px rgba(60, 56, 52, 0.7);  /* Orange glow effect */
+    transform: scale(1.01);                             /* Slight zoom effect */
+}
+
+/* Logo Styles */
+.navbar_logo {
+    display: flex;
+    align-items: center;                /* Align logo and text vertically */
+}
+
+.logo {
+    width: 80px;                        /* Logo size */
+    height: 80px;
+    margin-right: 10px;                 /* Space between logo and text */
+    border-radius: 50%;                 /* Optional: Make logo round */
+}
+
+/* Title Styles */
+.navbar_title {
+    text-align: center;                 /* Center the title horizontally */
+    color: #fff;
+    margin: 0;
+    font-size: 24px;
+}
+
+.navbar_logo h1 {
+    color: #000000;
+    margin: 0;
+    font-size: 24px;
+}
+
+.navbar_buttons {
+    display: flex;
+    padding: 20px;
+    gap: 15px;
+    margin-left: auto; /* Align buttons to the right */
+}
+
+.navbar_op_button {
+    padding: 8px 15px;
+    background-color: #f6821f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.navbar_op_button:hover {
+    background-color: #09a213;
+    box-shadow: 0 0 10px rgba(9, 162, 19, 0.7);
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 30px;
+}
+
+/* Header Styles */
+h2, h3 {
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Form Styles */
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+label {
+    color: #555;
+    font-weight: bold;
+}
+
+input, select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #007bff;
+}
+
+input[type="file"] {
+    padding: 4px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.5);
+}
+
+/* Button Styles */
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #007bff, #00d4ff);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #0056b3, #00aaff);
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(1);
+}
+
+/* File Input Styles */
+input[type="file"] {
+    border: none;
+    background-color: #f9f9f9;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    form {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
